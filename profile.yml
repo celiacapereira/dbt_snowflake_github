@@ -1,0 +1,14 @@
+default:
+  outputs:
+    dev:
+    type: snowflake
+    threads: 1
+    SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+    SF_USERNAME: ${{ secrets.SF_USERNAME }}
+    SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
+    role: "ACCOUNTADMIN"
+    database: "REPORT"
+    warehouse: "COMPUTE_WH"
+    schema: "REPORT"
+    client_session_keep_alive: False
+    query_tag: github_action_query
