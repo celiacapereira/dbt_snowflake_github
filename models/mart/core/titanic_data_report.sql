@@ -1,4 +1,4 @@
-with tita as (
+with titanic_ref as (
     
     select * from {{ ref('stg_titanic') }}
 
@@ -10,22 +10,22 @@ SELECT passengerid,sex,
     WHEN age is null and sex= 'male' THEN 29
     ELSE age
   END AS age
-FROM tita
+FROM titanic_ref
 )
 ,
 final as (
     select 
-    tita.PASSENGERID,
+    titanic_ref.PASSENGERID,
     SURVIVED,
     PCLASS,
     NAME,
-    tita.SEX,
+    titanic_ref.SEX,
     titanic_transformation.AGE,
     SIBSP,
     PARCH,
     FARE,
     EMBARKED
-    from tita inner join titanic_transformation on tita.PASSENGERID = titanic_transformation.PASSENGERID
+    from tita inner join titanic_transformation on titanic_ref.PASSENGERID = titanic_transformation.PASSENGERID
 )
 select 
     *
